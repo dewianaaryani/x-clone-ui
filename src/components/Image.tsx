@@ -20,6 +20,7 @@ const ImageComp = ({ path, w, h, alt, className, tr }: ImageType) => {
       {...(tr
         ? { transformation: [{ width: `${w}`, height: `${h}` }] }
         : { width: w, height: h })}
+      loading="lazy"
       alt={alt}
       className={className}
     />

@@ -92,13 +92,13 @@ const LeftBar = () => {
         </div>
         {/* button */}
         <Link
-          href={"/"}
+          href="/compose/post"
           className="bg-white rounded-full font-bold  w-12 h-12 flex items-center justify-center xxl:hidden"
         >
           <ImageComp path="x-clone/icons/post.svg" alt="post" w={24} h={24} />
         </Link>
         <Link
-          href={"/"}
+          href="/compose/post"
           className="hidden xxl:block bg-white rounded-full font-bold  py-2 px-20"
         >
           <ImageComp path="x-clone/icons/post.svg" alt="post" w={24} h={24} />

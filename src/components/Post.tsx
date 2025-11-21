@@ -2,8 +2,32 @@ import React from "react";
 import ImageComp from "./Image";
 import PostInfo from "./PostInfo";
 import PostInteraction from "./PostInteraction";
+import { imageKit } from "@/utils";
+import VideoComp from "./Video";
 
-const Post = () => {
+interface FileDetailsResponse {
+  width: number;
+  height: number;
+  filePath: string;
+  url: string;
+  fileType: string;
+  customMetadata?: { sensitive: boolean };
+}
+
+const Post = async () => {
+  const getFileDetails = async (
+    fileId: string
+  ): Promise<FileDetailsResponse> => {
+    return new Promise((resolve, reject) => {
+      imageKit.getFileDetails(fileId, function (error, result) {
+        if (error) reject(error);
+        else resolve(result as FileDetailsResponse);
+      });
+    });
+  };
+  const fileDetails = await getFileDetails("692049ca5c7cd75eb8b43a86");
+  console.log(fileDetails);
+
   return (
     <div className="p-4 border-y-[1px] border-borderGray">
       {/* POST TYPE */}
@@ -50,12 +74,27 @@ const Post = () => {
             facilis provident vero incidunt fuga in aliquam laborum aliquid
             voluptatem corrupti!
           </p>
+          {/*           
           <ImageComp
             path="x-clone/general/post.jpeg"
             alt="post image"
             w={600}
             h={600}
-          />
+          /> */}
+          {fileDetails && fileDetails.fileType === "image" ? (
+            <ImageComp
+              path={fileDetails.filePath}
+              alt=""
+              w={fileDetails.width}
+              h={fileDetails.height}
+              className={fileDetails.customMetadata?.sensitive ? "blur-sm" : ""}
+            />
+          ) : (
+            <VideoComp
+              path={fileDetails.filePath}
+              className={fileDetails.customMetadata?.sensitive ? "blur-sm" : ""}
+            />
+          )}
           <PostInteraction />
         </div>
       </div>
