@@ -15,7 +15,7 @@ const Share = () => {
     type: "original",
     sensitive: false,
   });
-  console.log(media);
+  // console.log(media);
 
   const handleMediaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {

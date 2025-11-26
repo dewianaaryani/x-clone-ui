@@ -1,8 +1,15 @@
+import Feed from "@/components/Feed";
 import ImageComp from "@/components/Image";
 import Link from "next/link";
 import React from "react";
+import { prisma } from "../../../../lib/prisma";
+import { notFound } from "next/navigation";
 
-const page = () => {
+const page = async ({ params }: { params: { username: string } }) => {
+  const user = await prisma.user.findUnique({
+    where: { username: params.username },
+  });
+  if (!user) return notFound();
   return (
     <div>
       <div className="flex items-center gap-8 sticky top-0 backdrop-blur-md p-4 z-10 bg-[#00000084]">
@@ -82,6 +89,7 @@ const page = () => {
           </div>
         </div>
       </div>
+      <Feed userProfileId={user.id} />
     </div>
   );
 };

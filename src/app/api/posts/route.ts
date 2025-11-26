@@ -1,11 +1,11 @@
-import React from "react";
-import Post from "./Post";
-import { prisma } from "../../lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import InfiniteFeed from "./InfiniteFeed";
+import { prisma } from "../../../../lib/prisma";
+import { NextRequest } from "next/server";
 
-const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
-  const { userId } = await auth();
+export async function GET(request: NextRequest) {
+    const searchParams = request.nextUrl.searchParams;
+    const userProfileId = searchParams.get("user") || undefined;
+    const { userId } = await auth();
   if (!userId) return;
 
   const whereCondition = userProfileId
@@ -25,20 +25,5 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
         },
       };
   const posts = await prisma.post.findMany({ where: whereCondition });
-  console.log(posts);
-
-  // FETCH POST FROM THE CURRENT USER AD THE FOLLOWINGS
-
-  return (
-    <div>
-      {posts.map((post) => (
-        <div className="" key={post.id}>
-          <Post />
-        </div>
-      ))}
-      <InfiniteFeed />
-    </div>
-  );
-};
-
-export default Feed;
+  return Response.json(posts);
+}
