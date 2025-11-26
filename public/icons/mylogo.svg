@@ -1,0 +1,15 @@
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- D -->
+  <path d="M 30 60 L 80 60 L 80 340 L 30 340 L 30 60 Z" fill="black"/>
+  <path d="M 80 60 Q 150 60 150 200 Q 150 340 80 340" fill="black" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- A -->
+  <path d="M 200 340 L 260 60 L 320 340 L 270 340 L 255 280 L 225 280 L 210 340 Z" fill="black"/>
+  <path d="M 230 200 L 280 200" stroke="black" stroke-width="35" stroke-linecap="round"/>
+  
+  <!-- R -->
+  <path d="M 360 60 L 410 60 L 410 200 L 360 200 Z" fill="black"/>
+  <path d="M 410 60 Q 460 60 460 120 Q 460 180 410 200" fill="black" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 410 200 L 470 340" stroke="black" stroke-width="50" stroke-linecap="round"/>
+  <path d="M 360 340 L 420 340" fill="black"/>
+</svg>
